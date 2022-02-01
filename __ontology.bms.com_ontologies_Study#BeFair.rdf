@@ -1,0 +1,341 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:study="http://ontology.bms.com/ontologies/Study#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:graphql="http://datashapes.org/graphql#"
+    xmlns:metadata="http://topbraid.org/metadata#"
+    xmlns:edg="http://edg.topbraid.solutions/model/"
+    xmlns:j.0="http://topbraid.org/swa#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:teamwork="http://topbraid.org/teamwork#"
+    xmlns:j.1="http://teamwork.topbraidlive.org/ontologyprojects#"
+    xmlns:sh="http://www.w3.org/ns/shacl#"
+    xmlns:dash="http://datashapes.org/dash#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xml:base="http://ontology.bms.com/ontologies/Study#BeFair" > 
+  <rdf:Description rdf:about="#Study-hasStudyClassfication">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasStudyClassfication"/>
+    <sh:name>has_study_classfication</sh:name>
+    <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+    <sh:class rdf:resource="#StudyClassification"/>
+    <sh:description>Classification of the Study. Ex. - Efficacy, Safety, PK, PD etc.
+</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Info"/>
+    <dash:nonRecursive rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</dash:nonRecursive>
+  </rdf:Description>
+  <rdf:Description rdf:about="#studyDesign-label">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="http://www.w3.org/2000/01/rdf-schema#label"/>
+    <dash:singleLine rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</dash:singleLine>
+    <sh:or rdf:resource="http://datashapes.org/dash#StringOrLangString"/>
+    <sh:name>labels</sh:name>
+    <graphql:name>labels</graphql:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ParticipationCriteria-InclusionCriteria">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <sh:path rdf:resource="#InclusionCriteria"/>
+    <sh:name>Inclusion criteria</sh:name>
+    <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</sh:minCount>
+    <sh:description>Inclusion criteria are characteristics that the prospective subjects must have if they are to be included in the study. For example, Minimum outcomes: coronary deaths &amp; non-fatal myocardial infarction.</sh:description>
+    <dash:coExistsWith rdf:resource="#ExclusionCriteria"/>
+    <sh:disjoint rdf:resource="#ExclusionCriteria"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#studyPhase">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>Study Phase</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <sh:property rdf:resource="#Study-studyId"/>
+    <sh:property rdf:resource="#Study-hasStudyType"/>
+    <sh:property rdf:resource="#Study-hasName"/>
+    <sh:property rdf:resource="#Study-hasClinicalDevLead"/>
+    <sh:property rdf:resource="#Study-hasGBSLead"/>
+    <sh:property rdf:resource="#Study-hasEnrollmentStatus"/>
+    <sh:property rdf:resource="#Study-dataLocation"/>
+    <sh:property rdf:resource="#Study-hasExecutionStatus"/>
+    <sh:property rdf:resource="#Study-hasStudyClassfication"/>
+    <sh:property rdf:resource="#Study-hasStudyDesign"/>
+    <sh:property rdf:resource="#Study-hasStudyPhase"/>
+    <sh:property rdf:resource="#Study-hasStatus"/>
+    <sh:property rdf:resource="#Study-hasStudySponsorship"/>
+    <sh:property rdf:resource="#Study-hasTherapeuticArea"/>
+    <rdfs:label>Study</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#gender">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>Gender</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#therepeutcArea-hasIndication">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasIndication"/>
+    <sh:name>has_indication</sh:name>
+    <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+    <sh:class rdf:resource="#Indication"/>
+    <sh:description>The indication of the therapeutic area. Ex: Anxiety, Autistic Disorder, Atrial Fibrillation, Diabetes, etc.</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Violation"/>
+    <dash:nonRecursive rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</dash:nonRecursive>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasGBSLead">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasGBSLead"/>
+    <sh:name>has_gbs_lead</sh:name>
+    <sh:class rdf:resource="#GBSLead"/>
+    <sh:description>Name of the GBS Lead.</sh:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasEnrollmentStatus">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasEnrollmentStatus"/>
+    <sh:name>has_enrollment_status</sh:name>
+    <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+    <sh:class rdf:resource="#EnrollmentStatus"/>
+    <sh:description>Enrollment status of the study. Ex. - Completed, Recruiting, Not-Recruiting, etc.</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Info"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#BeFair">
+    <j.0:defaultNamespace>http://ontology.bms.com/ontologies/Study#</j.0:defaultNamespace>
+    <metadata:status rdf:resource="http://topbraid.org/metadata#UnderDevelopmentStatus"/>
+    <edg:subjectArea rdf:resource="urn:x-tb-governance:R%26ED"/>
+    <rdfs:label>Study</rdfs:label>
+    <owl:imports rdf:resource="http://datashapes.org/graphql"/>
+    <owl:imports rdf:resource="http://topbraid.org/skos.shapes"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Indication">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>Indication</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EnrollmentStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>Enrollment Status</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GBSLead">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>GBS Lead</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#lead"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#StudyStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>Study Status</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ClinicalDevLead">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>Clinical Development Lead</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#lead"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasStudyDesign">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasStudyDesign"/>
+    <sh:name>has_study_design</sh:name>
+    <sh:class rdf:resource="#studyDesign"/>
+    <sh:description>Design of the Study. Ex – Open-Label, Blinded, Closed, etc.</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Info"/>
+    <dash:nonRecursive rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</dash:nonRecursive>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://teamwork.topbraidlive.org/ontologyprojects#Ontology">
+    <rdfs:subClassOf rdf:resource="http://topbraid.org/teamwork#Vocabulary"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasStatus">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasStatus"/>
+    <sh:name>has_status</sh:name>
+    <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+    <sh:class rdf:resource="#StudyStatus"/>
+    <sh:description>Status of the study protocol. Example - Operationally closed, Planned, Active.</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Info"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#therepeutcArea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <sh:property rdf:resource="#therepeutcArea-hasIndication"/>
+    <rdfs:label>Therapeutic Area</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ageGroup">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>Age Group</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-studyId">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <sh:path rdf:resource="#studyId"/>
+    <sh:name>has_study_id</sh:name>
+    <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+    <sh:description>The ID of the study.</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Violation"/>
+    <sh:message>Violation found</sh:message>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasStudyPhase">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasStudyPhase"/>
+    <sh:name>has_study_phase</sh:name>
+    <sh:class rdf:resource="#studyPhase"/>
+    <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+    <sh:description>Phase of the study protocol. Ex. - Phase 0, Phase 1.
+</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Info"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasTherapeuticArea">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasTherapeuticArea"/>
+    <sh:name>has_therapeutic_area</sh:name>
+    <sh:class rdf:resource="#therepeutcArea"/>
+    <sh:description>The therapeutic area that belongs to the study.</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Violation"/>
+    <sh:node rdf:resource="http://topbraid.org/teamworkconstraints#ClassShape"/>
+    <dash:symmetric rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</dash:symmetric>
+    <sh:message>Violation found</sh:message>
+    <dash:nonRecursive rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</dash:nonRecursive>
+  </rdf:Description>
+  <rdf:Description rdf:about="urn:x-evn-master:study">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdf:type rdf:resource="http://topbraid.org/teamwork#Vocabulary"/>
+    <rdf:type rdf:resource="http://teamwork.topbraidlive.org/ontologyprojects#Ontology"/>
+    <owl:imports rdf:resource="http://topbraid.org/skos.shapes"/>
+    <owl:imports rdf:resource="http://topbraid.org/teamworkconstraints"/>
+    <owl:imports rdf:resource="http://datashapes.org/graphql"/>
+    <rdfs:label>Study</rdfs:label>
+    <edg:subjectArea rdf:resource="urn:x-tb-governance:R%26ED"/>
+    <metadata:status rdf:resource="http://topbraid.org/metadata#UnderDevelopmentStatus"/>
+    <j.0:defaultNamespace>http://ontology.bms.com/ontologies/Study#</j.0:defaultNamespace>
+    <teamwork:externalGraphURI rdf:resource="#BeFair"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-dataLocation">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <sh:path rdf:resource="#dataLocation"/>
+    <sh:name>data_location</sh:name>
+    <sh:description>Global URI for the location of the data set.</sh:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasExecutionStatus">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasExecutionStatus"/>
+    <sh:name>has_execution_status</sh:name>
+    <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+    <sh:class rdf:resource="#ExecutionStatus"/>
+    <sh:description>The status of study execution. Ex. - Inhouse, Outsourced, Hybrid.
+</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Info"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ParticipationCriteria">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:comment>This is a node containing information about inclusion and exclusion criteria for participation in the study. Inclusion and exclusion criteria define the characteristics that prospective subjects must have if they are to be included in a study.</rdfs:comment>
+    <sh:property rdf:resource="#ParticipationCriteria-InclusionCriteria"/>
+    <sh:property rdf:resource="#ParticipationCriteria-ExclusionCriteria"/>
+    <rdfs:label>Participation Criteria</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#studyType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:comment></rdfs:comment>
+    <rdfs:label>Study Type</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#therapeuticArea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>therapeutic_area</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="#StudySponsorship">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>Study Sponsorship</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasStudySponsorship">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasStudySponsorship"/>
+    <sh:name>has_study_sponsorship</sh:name>
+    <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+    <sh:class rdf:resource="#StudySponsorship"/>
+    <sh:description>The sponsorship information for the initiation, management and / or financing of the clinical study. Ex. - BMS Sponsored, Externally sponsored</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Info"/>
+    <dash:nonRecursive rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</dash:nonRecursive>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ExecutionStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>Execution Status</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#lead">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:comment>The lead for the study.</rdfs:comment>
+    <rdfs:label>Lead</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#StudyClassification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <rdfs:label>Study Classification</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasName">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <sh:path rdf:resource="#hasName"/>
+    <sh:name>has_study_name</sh:name>
+    <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+    <sh:description>Name of the study.</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Info"/>
+    <sh:maxLength rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">50</sh:maxLength>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://topbraid.org/teamwork#Vocabulary">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasStudyType">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasStudyType"/>
+    <sh:name>has_study_type</sh:name>
+    <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+    <sh:class rdf:resource="#studyType"/>
+    <sh:description>Type of the Study. Example - Interventional, Observational.</sh:description>
+    <sh:severity rdf:resource="http://www.w3.org/ns/shacl#Info"/>
+    <dash:nonRecursive rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</dash:nonRecursive>
+  </rdf:Description>
+  <rdf:Description rdf:about="#studyDesign">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
+    <sh:property rdf:resource="#studyDesign-label"/>
+    <rdfs:label>Study Design</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Study-hasClinicalDevLead">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:path rdf:resource="#hasClinicalDevLead"/>
+    <sh:name>has_clinical_development_lead</sh:name>
+    <sh:class rdf:resource="#ClinicalDevLead"/>
+    <sh:description>Name of the Clinical Development Lead for the study.
+</sh:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ParticipationCriteria-ExclusionCriteria">
+    <rdf:type rdf:resource="http://www.w3.org/ns/shacl#PropertyShape"/>
+    <sh:datatype rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <sh:path rdf:resource="#ExclusionCriteria"/>
+    <sh:name>Exclusion criteria</sh:name>
+    <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</sh:minCount>
+    <sh:description>Exclusion criteria are those characteristics that disqualify prospective subjects from inclusion in the study. For example, No data or Does not include minimum outcomes.</sh:description>
+    <dash:coExistsWith rdf:resource="#InclusionCriteria"/>
+    <sh:disjoint rdf:resource="#InclusionCriteria"/>
+  </rdf:Description>
+</rdf:RDF>
