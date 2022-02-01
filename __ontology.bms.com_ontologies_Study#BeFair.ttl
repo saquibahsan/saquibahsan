@@ -1,0 +1,320 @@
+# baseURI: http://ontology.bms.com/ontologies/Study#BeFair
+# imports: http://datashapes.org/graphql
+# imports: http://topbraid.org/skos.shapes
+
+@prefix study: <http://ontology.bms.com/ontologies/Study#> .
+@prefix metadata: <http://topbraid.org/metadata#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix teamwork: <http://topbraid.org/teamwork#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix edg:   <http://edg.topbraid.solutions/model/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dash:  <http://datashapes.org/dash#> .
+@prefix graphql: <http://datashapes.org/graphql#> .
+
+study:Study  rdf:type    owl:Class ;
+        rdf:type         sh:NodeShape ;
+        sh:property      study:Study-studyId ;
+        sh:property      study:Study-hasStudyType ;
+        sh:property      study:Study-hasName ;
+        sh:property      study:Study-hasClinicalDevLead ;
+        sh:property      study:Study-hasGBSLead ;
+        sh:property      study:Study-hasEnrollmentStatus ;
+        sh:property      study:Study-dataLocation ;
+        sh:property      study:Study-hasExecutionStatus ;
+        sh:property      study:Study-hasStudyClassfication ;
+        sh:property      study:Study-hasStudyDesign ;
+        sh:property      study:Study-hasStudyPhase ;
+        sh:property      study:Study-hasStatus ;
+        sh:property      study:Study-hasStudySponsorship ;
+        sh:property      study:Study-hasTherapeuticArea ;
+        rdfs:label       "Study" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:Study-studyId  rdf:type  sh:PropertyShape ;
+        sh:datatype     xsd:string ;
+        sh:path         study:studyId ;
+        sh:name         "has_study_id" ;
+        sh:maxCount     1 ;
+        sh:description  "The ID of the study." ;
+        sh:severity     sh:Violation ;
+        sh:message      "Violation found" .
+
+study:studyType  rdf:type  owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:comment     "" ;
+        rdfs:label       "Study Type" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:Study-hasStudyType
+        rdf:type           sh:PropertyShape ;
+        sh:path            study:hasStudyType ;
+        sh:name            "has_study_type" ;
+        sh:minCount        1 ;
+        sh:class           study:studyType ;
+        sh:description     "Type of the Study. Example - Interventional, Observational." ;
+        sh:severity        sh:Info ;
+        dash:nonRecursive  true .
+
+study:studyDesign  rdf:type  owl:Class ;
+        rdf:type         sh:NodeShape ;
+        sh:property      study:studyDesign-label ;
+        rdfs:label       "Study Design" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:studyPhase  rdf:type  owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:label       "Study Phase" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:therapeuticArea
+        rdf:type    owl:Class ;
+        rdf:type    sh:NodeShape ;
+        rdfs:label  "therapeutic_area" .
+
+study:studyDesign-label
+        rdf:type         sh:PropertyShape ;
+        sh:path          rdfs:label ;
+        dash:singleLine  true ;
+        sh:or            dash:StringOrLangString ;
+        sh:name          "labels" ;
+        graphql:name     "labels" .
+
+study:Study-hasName  rdf:type  sh:PropertyShape ;
+        sh:datatype     xsd:string ;
+        sh:path         study:hasName ;
+        sh:name         "has_study_name" ;
+        sh:minCount     1 ;
+        sh:description  "Name of the study." ;
+        sh:severity     sh:Info ;
+        sh:maxLength    50 .
+
+study:GBSLead  rdf:type  owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:label       "GBS Lead" ;
+        rdfs:subClassOf  study:lead .
+
+study:ClinicalDevLead
+        rdf:type         owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:label       "Clinical Development Lead" ;
+        rdfs:subClassOf  study:lead .
+
+study:Study-hasClinicalDevLead
+        rdf:type        sh:PropertyShape ;
+        sh:path         study:hasClinicalDevLead ;
+        sh:name         "has_clinical_development_lead" ;
+        sh:class        study:ClinicalDevLead ;
+        sh:description  "Name of the Clinical Development Lead for the study.\n" .
+
+study:Study-hasGBSLead
+        rdf:type        sh:PropertyShape ;
+        sh:path         study:hasGBSLead ;
+        sh:name         "has_gbs_lead" ;
+        sh:class        study:GBSLead ;
+        sh:description  "Name of the GBS Lead." .
+
+study:Study-hasEnrollmentStatus
+        rdf:type        sh:PropertyShape ;
+        sh:path         study:hasEnrollmentStatus ;
+        sh:name         "has_enrollment_status" ;
+        sh:minCount     1 ;
+        sh:class        study:EnrollmentStatus ;
+        sh:description  "Enrollment status of the study. Ex. - Completed, Recruiting, Not-Recruiting, etc." ;
+        sh:severity     sh:Info .
+
+study:ageGroup  rdf:type  owl:Class ;
+        rdf:type    sh:NodeShape ;
+        rdfs:label  "Age Group" .
+
+study:gender  rdf:type  owl:Class ;
+        rdf:type    sh:NodeShape ;
+        rdfs:label  "Gender" .
+
+study:therepeutcArea  rdf:type  owl:Class ;
+        rdf:type         sh:NodeShape ;
+        sh:property      study:therepeutcArea-hasIndication ;
+        rdfs:label       "Therapeutic Area" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:Study-dataLocation
+        rdf:type        sh:PropertyShape ;
+        sh:datatype     xsd:string ;
+        sh:path         study:dataLocation ;
+        sh:name         "data_location" ;
+        sh:description  "Global URI for the location of the data set." .
+
+study:StudyClassification
+        rdf:type         owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:label       "Study Classification" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:Indication  rdf:type  owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:label       "Indication" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:ExecutionStatus
+        rdf:type         owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:label       "Execution Status" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:StudySponsorship
+        rdf:type         owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:label       "Study Sponsorship" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:Study-hasExecutionStatus
+        rdf:type        sh:PropertyShape ;
+        sh:path         study:hasExecutionStatus ;
+        sh:name         "has_execution_status" ;
+        sh:minCount     1 ;
+        sh:class        study:ExecutionStatus ;
+        sh:description  "The status of study execution. Ex. - Inhouse, Outsourced, Hybrid.\n" ;
+        sh:severity     sh:Info .
+
+study:Study-hasStudyClassfication
+        rdf:type           sh:PropertyShape ;
+        sh:path            study:hasStudyClassfication ;
+        sh:name            "has_study_classfication" ;
+        sh:minCount        1 ;
+        sh:class           study:StudyClassification ;
+        sh:description     "Classification of the Study. Ex. - Efficacy, Safety, PK, PD etc.\n" ;
+        sh:severity        sh:Info ;
+        dash:nonRecursive  true .
+
+study:Study-hasStudyDesign
+        rdf:type           sh:PropertyShape ;
+        sh:path            study:hasStudyDesign ;
+        sh:name            "has_study_design" ;
+        sh:class           study:studyDesign ;
+        sh:description     "Design of the Study. Ex – Open-Label, Blinded, Closed, etc." ;
+        sh:severity        sh:Info ;
+        dash:nonRecursive  true .
+
+study:Study-hasStudyPhase
+        rdf:type        sh:PropertyShape ;
+        sh:path         study:hasStudyPhase ;
+        sh:name         "has_study_phase" ;
+        sh:class        study:studyPhase ;
+        sh:maxCount     1 ;
+        sh:description  "Phase of the study protocol. Ex. - Phase 0, Phase 1.\n" ;
+        sh:severity     sh:Info .
+
+study:EnrollmentStatus
+        rdf:type         owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:label       "Enrollment Status" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:StudyStatus  rdf:type  owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:label       "Study Status" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:Study-hasStatus
+        rdf:type        sh:PropertyShape ;
+        sh:path         study:hasStatus ;
+        sh:name         "has_status" ;
+        sh:minCount     1 ;
+        sh:class        study:StudyStatus ;
+        sh:description  "Status of the study protocol. Example - Operationally closed, Planned, Active." ;
+        sh:severity     sh:Info .
+
+study:ParticipationCriteria
+        rdf:type         owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:comment     "This is a node containing information about inclusion and exclusion criteria for participation in the study. Inclusion and exclusion criteria define the characteristics that prospective subjects must have if they are to be included in a study." ;
+        sh:property      study:ParticipationCriteria-InclusionCriteria ;
+        sh:property      study:ParticipationCriteria-ExclusionCriteria ;
+        rdfs:label       "Participation Criteria" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:ParticipationCriteria-InclusionCriteria
+        rdf:type           sh:PropertyShape ;
+        sh:datatype        xsd:string ;
+        sh:path            study:InclusionCriteria ;
+        sh:name            "Inclusion criteria" ;
+        sh:minCount        0 ;
+        sh:description     "Inclusion criteria are characteristics that the prospective subjects must have if they are to be included in the study. For example, Minimum outcomes: coronary deaths & non-fatal myocardial infarction." ;
+        dash:coExistsWith  study:ExclusionCriteria ;
+        sh:disjoint        study:ExclusionCriteria .
+
+study:ParticipationCriteria-ExclusionCriteria
+        rdf:type           sh:PropertyShape ;
+        sh:datatype        xsd:string ;
+        sh:path            study:ExclusionCriteria ;
+        sh:name            "Exclusion criteria" ;
+        sh:minCount        0 ;
+        sh:description     "Exclusion criteria are those characteristics that disqualify prospective subjects from inclusion in the study. For example, No data or Does not include minimum outcomes." ;
+        dash:coExistsWith  study:InclusionCriteria ;
+        sh:disjoint        study:InclusionCriteria .
+
+study:Study-hasStudySponsorship
+        rdf:type           sh:PropertyShape ;
+        sh:path            study:hasStudySponsorship ;
+        sh:name            "has_study_sponsorship" ;
+        sh:minCount        1 ;
+        sh:class           study:StudySponsorship ;
+        sh:description     "The sponsorship information for the initiation, management and / or financing of the clinical study. Ex. - BMS Sponsored, Externally sponsored" ;
+        sh:severity        sh:Info ;
+        dash:nonRecursive  true .
+
+study:therepeutcArea-hasIndication
+        rdf:type           sh:PropertyShape ;
+        sh:path            study:hasIndication ;
+        sh:name            "has_indication" ;
+        sh:minCount        1 ;
+        sh:class           study:Indication ;
+        sh:description     "The indication of the therapeutic area. Ex: Anxiety, Autistic Disorder, Atrial Fibrillation, Diabetes, etc." ;
+        sh:severity        sh:Violation ;
+        dash:nonRecursive  true .
+
+study:Study-hasTherapeuticArea
+        rdf:type           sh:PropertyShape ;
+        sh:path            study:hasTherapeuticArea ;
+        sh:name            "has_therapeutic_area" ;
+        sh:class           study:therepeutcArea ;
+        sh:description     "The therapeutic area that belongs to the study." ;
+        sh:severity        sh:Violation ;
+        sh:node            <http://topbraid.org/teamworkconstraints#ClassShape> ;
+        dash:symmetric     false ;
+        sh:message         "Violation found" ;
+        dash:nonRecursive  true .
+
+study:lead  rdf:type     owl:Class ;
+        rdf:type         sh:NodeShape ;
+        rdfs:comment     "The lead for the study." ;
+        rdfs:label       "Lead" ;
+        rdfs:subClassOf  owl:Thing .
+
+study:BeFair  <http://topbraid.org/swa#defaultNamespace>  "http://ontology.bms.com/ontologies/Study#" ;
+        metadata:status  metadata:UnderDevelopmentStatus ;
+        edg:subjectArea  <urn:x-tb-governance:R%26ED> ;
+        rdfs:label       "Study" ;
+        owl:imports      <http://datashapes.org/graphql> ;
+        owl:imports      <http://topbraid.org/skos.shapes> ;
+        rdf:type         owl:Ontology .
+
+teamwork:Vocabulary  rdfs:subClassOf  owl:Ontology .
+
+<http://teamwork.topbraidlive.org/ontologyprojects#Ontology>
+        rdfs:subClassOf  teamwork:Vocabulary .
+
+<urn:x-evn-master:study>
+        rdf:type                   owl:Ontology ;
+        rdf:type                   teamwork:Vocabulary ;
+        rdf:type                   <http://teamwork.topbraidlive.org/ontologyprojects#Ontology> ;
+        owl:imports                <http://topbraid.org/skos.shapes> ;
+        owl:imports                <http://topbraid.org/teamworkconstraints> ;
+        owl:imports                <http://datashapes.org/graphql> ;
+        rdfs:label                 "Study" ;
+        edg:subjectArea            <urn:x-tb-governance:R%26ED> ;
+        metadata:status            metadata:UnderDevelopmentStatus ;
+        <http://topbraid.org/swa#defaultNamespace>  "http://ontology.bms.com/ontologies/Study#" ;
+        teamwork:externalGraphURI  study:BeFair .
